@@ -11,11 +11,11 @@ st.subheader("Test App")
 st.text('GCP + Postgres + Cloud Run + Streamlit.')
 
 load_dotenv()
-conn_str = ( "host="      + os.getenv('GRES_HOST') + " " +
-             "port="      + os.getenv('GRES_PORT') + " " +
-             "dbname="    + os.getenv('GRES_DB')   + " " +
-             "user="      + os.getenv('GRES_USER') + " " +
-             "password="  + os.getenv('GRES_PWD') )
+conn_str = ( "host="      + os.getenv('PG_HOST') + " " +
+             "port="      + os.getenv('PG_PORT') + " " +
+             "dbname="    + os.getenv('PG_DB')   + " " +
+             "user="      + os.getenv('PG_USER') + " " +
+             "password="  + os.getenv('PG_PWD') )
 
 conn = psycopg2.connect(conn_str)
 cur = conn.cursor()
