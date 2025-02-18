@@ -1,0 +1,10 @@
+altair
+pandas
+python-dotenv
+
+streamlit
+
+google-cloud-storage
+google-auth
+google-cloud
+google
