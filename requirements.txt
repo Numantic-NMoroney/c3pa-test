@@ -1,8 +1,6 @@
 altair
 pandas
-python-dotenv
 
-psycopg2
 streamlit
 
 google-cloud-storage
