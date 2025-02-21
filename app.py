@@ -20,21 +20,23 @@ def read_lines(file_path):
             lines.append(line.strip())
     return lines
 
+
+if 'lines' not in st.session_state:
+    st.session_state.lines = read_lines(file_path)
+
 st.subheader("Press the Button?")
 st.text('Please consider pressing the button.')
 
-lines = read_lines(file_path)
-
 if st.button("Button", type="primary"):
     with open(file_path, "w") as file:
-        file.write(lines[0] + "\n")
-        n1 = int(lines[1]) + 1
+        n1 = int(st.session_state.lines[1]) + 1
+        st.session_state.lines[1] = str(n1)
+
+        file.write(st.session_state.lines[0] + "\n")
         file.write(str(n1) + "\n")
 
-lines = read_lines(file_path)
-
 st.text("The button has been pressed " + 
-        str(lines[1]) + 
+        str(st.session_state.lines[1]) + 
         " times.")
 
 st.text("Thank you.")
