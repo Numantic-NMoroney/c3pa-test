@@ -42,9 +42,10 @@ qn = str(len(questions))
 dt = str(datetime.now()).replace(" ", "-")
 
 data = []
-# for i, question in enumerate(questions) :
-for i in range(3):
-    question = questions[i]
+# for i in range(3):
+for i, question in enumerate(questions) :
+
+    # question = questions[i]
 
     st.text(question.upper())
 
@@ -53,15 +54,21 @@ for i in range(3):
     prompt = question
     t1 = str(datetime.now()).replace(" ", "_")
 
-    time.sleep(5)
+    time.sleep(15)
     #
     response = bot.show_conversation(input_message=prompt, verbose=False)
     context_urls = bot.source_urls
     ai_response = bot.ai_response
 
+    if len(context_urls) > 0:
+        ai_response += " Context URLs : "
+        for url in context_urls:
+            ai_response += (" " + url + " ")
+
     st.text("\n")
     st.text(ai_response)
     st.divider()
+
 
     t2 = str(datetime.now()).replace(" ", "_")
 
@@ -70,7 +77,7 @@ for i in range(3):
         "qn" : qn,
         "question" : question,
         "prompt" : prompt,
-        "response" : response,
+        "response" : ai_response,
         "start" : t1,
         "stop" : t2,
         "hash" : h1
