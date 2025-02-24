@@ -8,6 +8,10 @@ from datetime import datetime
 import time
 import hashlib
 
+sys.path.insert(0, "rag")
+sys.path.insert(0, "utils")
+from rag_bot import CCCPolicyAssistant
+
 
 def portable_hash(string):
     encoded_string = string.encode('utf-8')
@@ -25,6 +29,8 @@ st.subheader("C3PA Testing")
 st.text('Batch mode testing of the California Community Colleges Policy-Assistant.')
 
 st.divider()
+
+bot = CCCPolicyAssistant()
 
 questions = []
 with open(in_path, "r") as file:
