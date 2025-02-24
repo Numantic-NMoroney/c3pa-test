@@ -3,9 +3,18 @@
 
 import streamlit as st
 import os
+import json
+from datetime import datetime
+import time
+import hashlib
 
 
-questions_path = os.environ.get('MOUNT_PATH', '/c3pa-app/testing')
+def portable_hash(string):
+    encoded_string = string.encode('utf-8')
+    hash_object = hashlib.sha256(encoded_string)
+    return hash_object.hexdigest()
+
+questions_path = os.environ.get('MOUNT_PATH', '/c3pa-app/testing')    # gcs
 # questions_path = 'c3pa-app/testing'
 
 name_txt = 'questions-2502-q26.txt'
@@ -21,5 +30,40 @@ questions = []
 with open(file_path, "r") as file:
     for line in file:
         questions.append(line.strip())
-        st.text(line)
+        # st.text(line)
+
+qn = str(len(questions))
+dt = str(datetime.now()).replace(" ", "-")
+
+st.text(dt)
+
+data = []
+for i, question in enumerate(questions) :
+    st.text(question)
+    h1 = portable_hash(question)
+
+    prompt = question
+    t1 = str(datetime.now()).replace(" ", "_")
+
+    time.sleep(0.5)
+    result = "add bot reply here"
+
+    t2 = str(datetime.now()).replace(" ", "_")
+
+    dict_ = {
+        "n" : str(i+1),
+        "qn" : qn,
+        "question" : question,
+        "prompt" : prompt,
+        "response" : result,
+        "start" : t1,
+        "stop" : t2,
+        "hash" : h1
+    }
+    data.append(dict_)
+
+json_str = json.dumps(data)
+
+# with open("log_testing-ccc-bot-" + dt + ".json", "w") as f:
+#     f.write(json_str)
 
