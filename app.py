@@ -5,8 +5,8 @@ import streamlit as st
 import os
 
 
-# questions_path = os.environ.get('MOUNT_PATH', '/c3pa-app/testing')
-questions_path = 'c3pa-app/testing'
+questions_path = os.environ.get('MOUNT_PATH', '/c3pa-app/testing')
+# questions_path = 'c3pa-app/testing'
 
 name_txt = 'questions-2502-q26.txt'
 file_path = os.path.join(questions_path, name_txt)
