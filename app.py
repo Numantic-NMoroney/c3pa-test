@@ -45,14 +45,19 @@ st.text(dt)
 
 data = []
 for i, question in enumerate(questions) :
-    st.text(question)
+    st.text(question.upper())
+
     h1 = portable_hash(question)
 
     prompt = question
     t1 = str(datetime.now()).replace(" ", "_")
 
-    time.sleep(0.5)
-    result = "add bot reply here"
+    # time.sleep(0.5)
+    #
+    response = bot.show_conversation(input_message=prompt, verbose=False)
+    st.text("\n")
+    st.text(response)
+    st.divider()
 
     t2 = str(datetime.now()).replace(" ", "_")
 
@@ -61,7 +66,7 @@ for i, question in enumerate(questions) :
         "qn" : qn,
         "question" : question,
         "prompt" : prompt,
-        "response" : result,
+        "response" : response,
         "start" : t1,
         "stop" : t2,
         "hash" : h1
