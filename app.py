@@ -41,10 +41,11 @@ with open(in_path, "r") as file:
 qn = str(len(questions))
 dt = str(datetime.now()).replace(" ", "-")
 
-st.text(dt)
-
 data = []
-for i, question in enumerate(questions) :
+# for i, question in enumerate(questions) :
+for i in range(3):
+    question = questions[i]
+
     st.text(question.upper())
 
     h1 = portable_hash(question)
@@ -52,11 +53,14 @@ for i, question in enumerate(questions) :
     prompt = question
     t1 = str(datetime.now()).replace(" ", "_")
 
-    # time.sleep(0.5)
+    time.sleep(5)
     #
     response = bot.show_conversation(input_message=prompt, verbose=False)
+    context_urls = bot.source_urls
+    ai_response = bot.ai_response
+
     st.text("\n")
-    st.text(response)
+    st.text(ai_response)
     st.divider()
 
     t2 = str(datetime.now()).replace(" ", "_")
