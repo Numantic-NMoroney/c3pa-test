@@ -109,10 +109,10 @@ class CCCPolicyAssistant:
 
         # LangSmith
         os.environ["LANGCHAIN_TRACING_V2"] = "true"
-        os.environ["LANGCHAIN_API_KEY"] = creds.apis_configs["LANGCHAIN_API_KEY"]
+        # os.environ["LANGCHAIN_API_KEY"] = creds.apis_configs["LANGCHAIN_API_KEY"]    [2502] n8
 
         # Google
-        os.environ["GOOGLE_API_KEY"] = creds.apis_configs["GOOGLE_API_KEY"]
+        # os.environ["GOOGLE_API_KEY"] = creds.apis_configs["GOOGLE_API_KEY"]          [2502] n8
 
         ### Step 2: Initialize Vertex AI
         vertexai.init(project=self.gcp_project_id,
