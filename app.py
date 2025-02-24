@@ -2,7 +2,7 @@
 #
 
 import streamlit as st
-import os
+import sys, os
 import json
 from datetime import datetime
 import time
@@ -14,11 +14,11 @@ def portable_hash(string):
     hash_object = hashlib.sha256(encoded_string)
     return hash_object.hexdigest()
 
-questions_path = os.environ.get('MOUNT_PATH', '/c3pa-app/testing')    # gcs
-# questions_path = 'c3pa-app/testing'
+testing_path = os.environ.get('MOUNT_PATH', '/c3pa-app/testing')    # gcs
+# testing_path = 'c3pa-app/testing'
 
 name_txt = 'questions-2502-q26.txt'
-file_path = os.path.join(questions_path, name_txt)
+in_path = os.path.join(testing_path, name_txt)
 
 
 st.subheader("C3PA Testing")
@@ -27,7 +27,7 @@ st.text('Batch mode testing of the California Community Colleges Policy-Assistan
 st.divider()
 
 questions = []
-with open(file_path, "r") as file:
+with open(in_path, "r") as file:
     for line in file:
         questions.append(line.strip())
         # st.text(line)
@@ -64,6 +64,8 @@ for i, question in enumerate(questions) :
 
 json_str = json.dumps(data)
 
-# with open("log_testing-ccc-bot-" + dt + ".json", "w") as f:
-#     f.write(json_str)
+name_json = "log_testing-ccc-bot-" + dt + ".json"
+out_path = os.path.join(testing_path, name_json)
+with open(out_path, "w") as f:
+    f.write(json_str)
 
