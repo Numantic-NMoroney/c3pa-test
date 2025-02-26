@@ -21,7 +21,10 @@ def portable_hash(string):
 testing_path = os.environ.get('MOUNT_PATH', '/c3pa-app/testing')    # gcs
 # testing_path = 'c3pa-app/testing'
 
-name_txt = 'questions-2502-q26.txt'
+name_txt = 'questions-250226-q10-a.txt'
+# name_txt = 'questions-250226-q10-b.txt'
+# name_txt = 'questions-2502-q26.txt'
+
 in_path = os.path.join(testing_path, name_txt)
 
 
@@ -80,13 +83,14 @@ for i, question in enumerate(questions) :
         "response" : ai_response,
         "start" : t1,
         "stop" : t2,
-        "hash" : h1
+        "hash" : h1,
+        "version" : bot.version
     }
     data.append(dict_)
 
 json_str = json.dumps(data)
 
-name_json = "log_testing-ccc-bot-" + dt + ".json"
+name_json = "log_testing-c3pa-" + dt + ".json"
 out_path = os.path.join(testing_path, name_json)
 with open(out_path, "w") as f:
     f.write(json_str)
