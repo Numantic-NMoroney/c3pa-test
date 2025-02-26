@@ -21,8 +21,8 @@ def portable_hash(string):
 testing_path = os.environ.get('MOUNT_PATH', '/c3pa-app/testing')    # gcs
 # testing_path = 'c3pa-app/testing'
 
-name_txt = 'questions-250226-q10-a.txt'
-# name_txt = 'questions-250226-q10-b.txt'
+# name_txt = 'questions-250226-q10-a.txt'
+name_txt = 'questions-250226-q10-b.txt'
 # name_txt = 'questions-2502-q26.txt'
 
 in_path = os.path.join(testing_path, name_txt)
